@@ -97,7 +97,7 @@ class ReferenceNote {
 
 const getReferenceNote = async (audioContext, {onstart, onended}) => {
     return new Promise(async resolve => {
-        let res = await fetch("https://lh00000000.cdn.nyc3.digitaloceanspaces.com/siteassets/loserio.cloud/abletondefault-a440.wav")
+        let res = await fetch("https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/abletondefault-a440.wav")
         let testNoteArrBuff = await res.arrayBuffer()
         audioContext.decodeAudioData(testNoteArrBuff, buffer => {
             resolve(new ReferenceNote(audioContext, buffer, onstart, onended))
