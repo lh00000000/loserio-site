@@ -369,7 +369,7 @@ const SignUp = () => {
                             An email with your API credentials will be sent to you sometime soon.
                         </p>
                         <p>In the meantime, <a href="https://gist.github.com/lh00000000/2611d78df4b8bd39221914224c8a3047" target="_blank">check out our tutorial</a>, <a
-                        target="_blank" href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0">our documentation</a>, and <a target="_blank" href="https://medium.com/loser-io-engineering-blog">our engineering blog</a></p>
+                        target="_blank" href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0">our documentation</a>, and <a target="_blank" href="https://medium.com/loser-io-engineering-blog">our engineering blog</a>.</p>
                     </div>
                 )}
             </div>
