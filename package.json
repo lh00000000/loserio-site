@@ -22,7 +22,9 @@
   "homepage": "https://github.com/lh00000000/loserio-site#readme",
   "dependencies": {
     "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.15",
     "next": "^9.3.4",
+    "pitchfinder": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

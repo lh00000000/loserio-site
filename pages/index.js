@@ -1,10 +1,18 @@
-import Head from 'next/head'
-
+import Head from "next/head"
+import SingUp from "../components/singup"
 const colors = {
     blackKeyColor: "#101010",
 }
 const MenuBar = () => (
-    <div style={{ position: "fixed", top: 0, left: 0, width: "100vw" }}>
+    <div
+        style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            zIndex: 1,
+        }}
+    >
         <div
             style={{
                 display: "flex",
@@ -12,69 +20,82 @@ const MenuBar = () => (
                 justifyContent: "space-between",
             }}
         >
-            <div
-                className="blackKey centerContents leftKey"
-                style={{
-                    borderRadius: "0px 0px 5px 0px",
-                    fontSize: "28px",
-                }}
-            >
-                loser.io
+            <div className="leftKeys">
+                <a
+                    href="https://loserio.cloud"
+                    className="blackKey centerContents"
+                >
+                    <span>loser.io</span>
+                </a>
             </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "flex-end",
-                    // justifyContent: "space-between",
-                }}
-            >
-                <a href="#about" className="blackKey rightKey centerContents">
-                    about
+            <div className="rightKeys">
+                <a
+                    id="about"
+                    href="#about"
+                    className="blackKey rightKey centerContents"
+                >
+                    <span>About</span>
                 </a>
                 {/*<div className="blackKey rightKey centerContents">faq</div>*/}
                 <a
                     href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
+                    target="_blank"
                     className="blackKey rightKey centerContents"
                 >
-                    docs
+                    <span>Documentation</span>
                 </a>
                 <a
                     target="_blank"
                     href="https://medium.com/loser-io-engineering-blog"
                     className="blackKey rightKey centerContents"
                 >
-                    blog
+                    <span>Blog</span>
                 </a>
-                <a
-                    href="#comingsoon"
-                    className="blackKey rightKey centerContents"
-                >
-                    sign up
+                <a href="#singup" className="blackKey rightKey centerContents">
+                    <span>Sing up</span>
                 </a>
             </div>
             <style jsx>
                 {`
-                    .leftKey {
+                    .leftKeys a {
+                        font-size: 28px;
                         padding: 8px 12px 8px 12px;
+                        // border-radius: 0px 0px 4px 0px;
                     }
-                    .rightKey {
-                        padding: 8px 16px 8px 16px;
-                        text-decoration: none;
+
+                    .rightKeys {
+                        font-style: italic;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-end;
                     }
+
+                    .rightKeys span {
+                        border-right: 1px solid gray;
+                    }
+
+                    #about {
+                        // border-radius: 0px 0px 0px 4px;
+                    }
+
                     .blackKey {
                         font-family: Georgia;
-                        background-color: ${colors.blackKeyColor};
-
-                        border-radius: 0px 0px 5px 5px;
-                        color: white;
-                        margin-right: 1px;
-
-                        box-shadow: 1px 1px 8px #303030;
+                        background-color: rgba(255, 255, 255, 0.15);
+                        border-top: 4px solid black;
+                        border-bottom: 1px solid black;
+                    }
+                    a {
+                        color: black;
+                        text-decoration: none;
                     }
 
-                    .blackKey:hover {
-                        background-color: #222;
+                    .blackKey span {
+                        width: 100%;
+                        padding: 6px 10px 6px 10px;
+                    }
+
+                    .blackKey:hover span {
+                        text-decoration: underline;
                     }
                 `}
             </style>
@@ -88,7 +109,7 @@ const GetStarted = () => {
             <div id="pianovid">
                 <video autoPlay muted loop>
                     <source
-                        src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/shortpianovid480.mov"
+                        src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/soonpianovid480.mov"
                         type="video/mp4"
                     />
                 </video>
@@ -99,44 +120,43 @@ const GetStarted = () => {
                     <h2>the POST-pianist piano API</h2>
                 </div>
                 <p id="tagline">
-                    <i>
-                        maintenance-free, pianist-free, hassle-free in a cloud
-                    </i>
+                    <i>pianist-free, maintenance-free, in the cloud</i>
                 </p>
-                <a
-                    id="gsbutton"
-                    href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
-                >
+                <a id="gsbutton" href="#singup">
                     <div className="centerContents">
-                        <p>get started</p>
+                        <p>Sign up for the beta now.</p>
                     </div>
                 </a>
             </div>
+
             <style jsx>
                 {`
                     #gettingstarted {
-                        // background-color: gray;
+                        // z-index: 999;
                     }
-                    #elevator {
-                        color: white;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-
                     #gsbutton {
-                        background-color: ${colors.blackKeyColor};
-                        border-radius: 5px;
                         padding: 12px;
-                        box-shadow: 1px 1px 8px #303030;
                         color: white;
                     }
                     #gsbutton:hover {
-                        background-color: #181818;
+                        color: #ccc;
                     }
                     #gsbutton p {
                         margin: 0;
-                        font-size: 40px;
+
+                        font-size: 32px;
+                    }
+
+                    #elevator {
+                        border-top: 8px solid white;
+                        border-bottom: 1px solid white;
+                        color: white;
+                        display: flex;
+                        padding-top: 32px;
+                        padding-bottom: 32px;
+                        flex-direction: column;
+                        align-items: center;
+                        // z-index: 999;
                     }
 
                     #elevator h1 {
@@ -151,11 +171,11 @@ const GetStarted = () => {
                         font-size: 24px;
                         padding: 0px;
                         margin: 0px 0px 0px 8px;
-                        color: #dedede;
+                        font-weight: normal;
                     }
                     #tagline {
-                        color: #d0d0d0;
-                        font-size: 20px;
+                        color: #eeeeee;
+                        font-size: 32px;
                         margin: 0px 0px 24px;
                     }
 
@@ -166,7 +186,7 @@ const GetStarted = () => {
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
-                        z-index: -999;
+                        // z-index: 1;
                     }
                     #pianovid video {
                         min-width: 100%;
@@ -220,22 +240,32 @@ const Triad = () => (
                 }
 
                 .card {
-                    width: 200px;
-                    // background-color: blue;
+                    width: 300px;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    z-index: -1;
+                    border-top: 8px solid black;
+                    padding-top: 32px;
+                    padding-bottom: 32px;
+                    margin: 16px 8px 16px 8px;
+                }
+
+                .card h3 {
+                    font-size: 32px;
                 }
                 .imgContainer {
-                    width: 100%;
+                    // width: 33vw;
+                    // height: 33vw;
                 }
                 .imgContainer img {
-                    width: 100%;
+                    width: 20vh;
                     object-fit: contain;
                 }
                 .copy p {
                     text-align: center;
                     margin: 0;
+                    font-size: 28px;
                 }
             `}
         </style>
@@ -245,16 +275,21 @@ const Triad = () => (
 const QuoteOne = () => (
     <section className="centerContents fullsection">
         <div style={{ maxWidth: "80vw" }}>
-            <i>
-                With loser.io, data comes in and piano music comes out. I never
-                have to hear a thing. - Anonymous Vectorialist
-            </i>
+            <p>
+                <i>
+                    With loser.io, data comes in and piano music comes out. I
+                    never have to hear a thing. - Anonymous Vectorialist
+                </i>
+            </p>
         </div>
         <style jsx>
             {`
-                section {
-                    background-color: black;
-                    color: white;
+                p {
+                    border-top: 8px solid black;
+                    border-bottom: 2px solid black;
+                    padding: 20px 0px 20px 0px;
+                    font-size: 50px;
+                    text-align: center;
                 }
             `}
         </style>
@@ -264,21 +299,23 @@ const QuoteOne = () => (
 const QuoteTwo = () => (
     <section className="centerContents fullsection">
         <div style={{ maxWidth: "80vw" }}>
-            <i>
-                “loser.io is the born virtuoso in every respect, I thought,
-                [redacted] the failure from the very beginning who couldn’t
-                admit his own failure and all his life couldn’t understand it,
-                even though he was one of our very best piano players, as I can
-                say without reservation, he was also the typical failure who
-                failed, who had to fail." - Anonymous, Replaced 88 In-House
-                Pianists with Our Services
-            </i>
+            <p>
+                <i>
+                    “loser.io is the born virtuoso in every respect, I thought,
+                    [redacted] the failure from the very beginning who couldn’t
+                    admit his own failure and all his life couldn’t understand
+                    it, even though he was one of our very best piano players,
+                    as I can say without reservation, he was also the typical
+                    failure who failed, who had to fail." - Anonymous, Replaced
+                    88 In-House Pianists with Our Services
+                </i>
+            </p>
         </div>
         <style jsx>
             {`
-                section {
-                    background-color: #808080;
-                    color: white;
+                p {
+                    font-size: 30px;
+                    text-align: center;
                 }
             `}
         </style>
@@ -286,33 +323,79 @@ const QuoteTwo = () => (
 )
 
 // <a href=""><img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-instagram.png" /></a>
-const SignUp = () => (
-    <section id="comingsoon" className="centerContents fullsection">
-        <div style={{ maxWidth: "80vw" }}>
-            <h1>PUBLIC BETA COMING SOON</h1>
-            <div id="shareicons">
-                <a href="https://twitter.com/loserdotio">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-twitter.png" />
-                </a>
+//<div id="shareicons">
+//                <a href="https://twitter.com/loserdotio">
+//                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-twitter.png" />
+//                </a>
+//            </div>
+const SignUp = () => {
+    let [submitted, setSubmitted] = React.useState(false)
+    return (
+        <section id="singup" className="centerContents fullsection">
+            <div id="stuff">
+                <h1>
+                    {submitted
+                        ? "Thank you for your interest in loser.io"
+                        : "Sign up for the public beta."}
+                </h1>
+                {!submitted && (
+                    <SingUp
+                        onSubmit={(email) => {
+                            fetch(
+                                "https://loserio.cloud/api/as/maintainer/composer",
+
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        Accept: "application/json",
+                                        Authorization: `Bearer ${Array(16)
+                                            .fill(0)
+                                            .join("")}`,
+                                    },
+                                    body: JSON.stringify({
+                                        email,
+                                        password: "default",
+                                    }),
+                                }
+                            )
+                            setSubmitted(true)
+                        }}
+                    />
+                )}
+                {submitted && (
+                    <div>
+                        <p>
+                            An email with your API credentials will be sent to you sometime soon.
+                        </p>
+                        <p>In the meantime, <a href="https://gist.github.com/lh00000000/2611d78df4b8bd39221914224c8a3047" target="_blank">check out our tutorial</a>, <a
+                        target="_blank" href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0">our documentation</a>, and <a target="_blank" href="https://medium.com/loser-io-engineering-blog">our engineering blog</a></p>
+                    </div>
+                )}
             </div>
-        </div>
-        <style jsx>
-            {`
-                section {
-                    background-color: white;
-                    color: black;
-                }
-                #shareicons {
-                    text-align: center;
-                }
-                img {
-                    width: 64px;
-                    object-fit: contain;
-                }
-            `}
-        </style>
-    </section>
-)
+            <style jsx>
+                {`
+                    section {
+                        background-color: white;
+                        color: black;
+                    }
+                    #stuff {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    #shareicons {
+                        text-align: center;
+                    }
+                    img {
+                        width: 64px;
+                        object-fit: contain;
+                    }
+                `}
+            </style>
+        </section>
+    )
+}
 
 const Main = () => {
     return (
@@ -324,17 +407,19 @@ const Main = () => {
                     content="initial-scale=1.0, width=device-width"
                 />
             </Head>
-            <MenuBar />
             <GetStarted />
             <QuoteOne />
             <Triad />
             <QuoteTwo />
             <SignUp />
+            <MenuBar />
 
             <style jsx global>
                 {`
                     body {
                         margin: 0;
+                        font-family: Baskerville;
+                        font-weight: lighter;
                     }
                     .centerContents {
                         display: flex;
@@ -344,7 +429,7 @@ const Main = () => {
                     }
 
                     .fullsection {
-                        height: 100vh;
+                        min-height: 100vh;
                         width: 100vw;
                         overflow: hidden;
                     }
