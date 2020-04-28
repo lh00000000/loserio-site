@@ -141,7 +141,7 @@ const TunerCapcha = ({ onSolve }) => {
                         border-top: 4px solid black;
                         border-bottom: 1px solid black;
                         width: 400px;
-                        padding: 8px;
+                        padding: 32px 0px 32px 0px;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -202,6 +202,7 @@ const SingUpPage = ({onSubmit}) => {
                 <input
                     type="submit"
                     name="signup"
+                    id="submitbutton"
                     value={
                         captchaSolved ? "Sign up." : "Please verify to sign up."
                     }
@@ -213,15 +214,17 @@ const SingUpPage = ({onSubmit}) => {
                 {`
                     #emailinput {
                         padding: 8px;
-                        width: 200px;
+                        width: 300px;
                     }
 
                     #intuneContainer {
-                        margin: 10px;
+                        margin: 16px;
+                        // padding: 32px 0px 32px 0px;
                     }
-
-
-
+                    #submitbutton {
+                        height: 48px;
+                        padding: 8px;
+                    }
                     form {
                         display: flex;
                         flex-direction: column;

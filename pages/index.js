@@ -4,102 +4,102 @@ const colors = {
     blackKeyColor: "#101010",
 }
 const MenuBar = () => (
-    <div
-        style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            zIndex: 1,
-        }}
-    >
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-            }}
-        >
-            <div className="leftKeys">
-                <a
-                    href="https://loserio.cloud"
-                    className="blackKey centerContents"
-                >
+    <div id="menubar">
+        <div className="leftKeys">
+            <a href="https://loserio.cloud">
+                <div className="blackKey centerContents">
                     <span>loser.io</span>
-                </a>
-            </div>
-            <div className="rightKeys">
-                <a
-                    id="about"
-                    href="#about"
-                    className="blackKey rightKey centerContents"
-                >
-                    <span>About</span>
-                </a>
-                {/*<div className="blackKey rightKey centerContents">faq</div>*/}
-                <a
-                    href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
-                    target="_blank"
-                    className="blackKey rightKey centerContents"
-                >
-                    <span>Documentation</span>
-                </a>
-                <a
-                    target="_blank"
-                    href="https://medium.com/loser-io-engineering-blog"
-                    className="blackKey rightKey centerContents"
-                >
-                    <span>Blog</span>
-                </a>
-                <a href="#singup" className="blackKey rightKey centerContents">
-                    <span>Sing up</span>
-                </a>
-            </div>
-            <style jsx>
-                {`
-                    .leftKeys a {
-                        font-size: 28px;
-                        padding: 8px 12px 8px 12px;
-                        // border-radius: 0px 0px 4px 0px;
-                    }
-
-                    .rightKeys {
-                        font-style: italic;
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-end;
-                    }
-
-                    .rightKeys span {
-                        border-right: 1px solid gray;
-                    }
-
-                    #about {
-                        // border-radius: 0px 0px 0px 4px;
-                    }
-
-                    .blackKey {
-                        font-family: Georgia;
-                        background-color: rgba(255, 255, 255, 0.15);
-                        border-top: 4px solid black;
-                        border-bottom: 1px solid black;
-                    }
-                    a {
-                        color: black;
-                        text-decoration: none;
-                    }
-
-                    .blackKey span {
-                        width: 100%;
-                        padding: 6px 10px 6px 10px;
-                    }
-
-                    .blackKey:hover span {
-                        text-decoration: underline;
-                    }
-                `}
-            </style>
+                </div>
+            </a>
         </div>
+        <div className="rightKeys">
+            <a id="about" href="#about">
+                <div className="blackKey rightKey centerContents">
+                    <span className="rightBorder">About</span>
+                </div>
+            </a>
+            <a
+                href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
+                target="_blank"
+            >
+                <div className="blackKey rightKey centerContents">
+                    <span className="rightBorder">Documentation</span>
+                </div>
+            </a>
+            <a
+                target="_blank"
+                href="https://medium.com/loser-io-engineering-blog"
+            >
+                <div className="blackKey rightKey centerContents">
+                    <span className="rightBorder">Blog</span>
+                </div>
+            </a>
+            <a href="#singup">
+                <div className="blackKey rightKey centerContents">
+                    <span>Sing up</span>
+                </div>
+            </a>
+        </div>
+        <style jsx>
+            {`
+                #menubar {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    z-index: 1;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                }
+                .leftKeys .blackKey {
+                    font-size: 32px;
+                    flex-shrink: 1;
+                }
+
+                .rightKeys {
+                    flex-shrink: 1;
+                    font-style: italic;
+                    font-size: 1.2em;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+                }
+
+
+                .rightKeys span {
+                    width: 100%;
+                    text-align: center;
+                    padding: 0px 2vw 0px 2vw;
+                }
+                .rightBorder {
+                    border-right: 1px solid gray;
+                }
+
+                .blackKey {
+                    font-family: Georgia;
+                    background-color: rgba(255, 255, 255, 0.15);
+                    border-top: 4px solid black;
+                    border-bottom: 1px solid black;
+                    height: 48px;
+                }
+
+                a {
+                    color: black;
+                    text-decoration: none;
+                }
+
+                .blackKey span {
+                    width: 100%;
+                }
+
+                .blackKey:hover span {
+                    text-decoration: underline;
+                }
+            `}
+        </style>
     </div>
 )
 
@@ -366,10 +366,33 @@ const SignUp = () => {
                 {submitted && (
                     <div>
                         <p>
-                            An email with your API credentials will be sent to you sometime soon.
+                            An email with your API credentials will be sent to
+                            you sometime soon.
                         </p>
-                        <p>In the meantime, <a href="https://gist.github.com/lh00000000/2611d78df4b8bd39221914224c8a3047" target="_blank">check out our tutorial</a>, <a
-                        target="_blank" href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0">our documentation</a>, and <a target="_blank" href="https://medium.com/loser-io-engineering-blog">our engineering blog</a>.</p>
+                        <p>
+                            In the meantime,{" "}
+                            <a
+                                href="https://gist.github.com/lh00000000/2611d78df4b8bd39221914224c8a3047"
+                                target="_blank"
+                            >
+                                check out our tutorial
+                            </a>
+                            ,{" "}
+                            <a
+                                target="_blank"
+                                href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
+                            >
+                                our documentation
+                            </a>
+                            , and{" "}
+                            <a
+                                target="_blank"
+                                href="https://medium.com/loser-io-engineering-blog"
+                            >
+                                our engineering blog
+                            </a>
+                            .
+                        </p>
                     </div>
                 )}
             </div>
@@ -383,6 +406,10 @@ const SignUp = () => {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                    }
+                    h1 {
+                        font-size: 32px;
+                        margin-bottom: 32px;
                     }
                     #shareicons {
                         text-align: center;
