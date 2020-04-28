@@ -109,7 +109,7 @@ const GetStarted = () => {
             <div id="pianovid">
                 <video autoPlay muted loop>
                     <source
-                        src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/soonpianovid480.mov"
+                        src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/shortpianovid480.mov"
                         type="video/mp4"
                     />
                 </video>
