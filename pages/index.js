@@ -156,7 +156,7 @@ const GetStarted = () => {
                         padding-bottom: 32px;
                         flex-direction: column;
                         align-items: center;
-                        // z-index: 999;
+                        z-index: 2;
                     }
 
                     #elevator h1 {
@@ -186,7 +186,7 @@ const GetStarted = () => {
                         width: 100%;
                         height: 100%;
                         overflow: hidden;
-                        // z-index: 1;
+                        z-index: 2;
                     }
                     #pianovid video {
                         min-width: 100%;
