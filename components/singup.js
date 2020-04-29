@@ -1,10 +1,8 @@
 import dynamic from "next/dynamic"
 import React from "react"
 import {
-    getStream,
-    createAnalyser,
-    getReferenceNote,
-    getPitchDetector,
+    createReferenceNote,
+    createPitchDetector,
 } from "../audio"
 
 import { RollCount } from "../tuil"
@@ -14,7 +12,7 @@ class Tuner {
         this.analyser = analyser
         this.listen = false
         this.rollCount = new RollCount(64)
-        this.pitchDetect = getPitchDetector()
+        this.pitchDetect = createPitchDetector()
         this.testNote = testNote
         this.onNewPitchData = onNewPitchData
         this.onMatch = onMatch
@@ -50,7 +48,9 @@ let tuner = null
 const TunerCapcha = ({ onSolve }) => {
     let [mode, setMode] = React.useState("DORMANT") // RECORDING || PLAYING || SOLVED
     let [refNote, setRefNote] = React.useState()
-    let [lastNoteData, setLastNoteData] = React.useState({ note: "No pitch detected yet..." })
+    let [lastNoteData, setLastNoteData] = React.useState({
+        note: "No pitch detected yet...",
+    })
     let [permissionGranted, setPermissionGranted] = React.useState(false)
     let [audioContext, setAudioContext] = React.useState()
 
@@ -63,19 +63,38 @@ const TunerCapcha = ({ onSolve }) => {
             window.webkitAudioContext)()
         setAudioContext(audioContext)
 
-        getReferenceNote(audioContext, {
+        createReferenceNote(audioContext, {
             onstart: () => setMode("PLAYING"),
             onended: () => setMode(mode == "PLAYING" ? "DORMANT" : mode),
-        }).then(newRefNote => setRefNote(newRefNote))
-
+        }).then((newRefNote) => setRefNote(newRefNote))
     }, [])
 
     React.useEffect(() => {
         let setupAudio = async () => {
             // let audioContext = new (window.AudioContext ||
             //     window.webkitAudioContext)()
-            let stream = await getStream()
-            let analyser = createAnalyser(audioContext, stream)
+            let stream = await (async () => {
+                if (
+                    navigator.mediaDevices &&
+                    navigator.mediaDevices.getUserMedia
+                ) {
+                    return navigator.mediaDevices
+                        .getUserMedia({ audio: true })
+                        .catch(function(err) {
+                            console.log(
+                                "The following getUserMedia error occurred: " +
+                                    err
+                            )
+                        })
+                }
+            })()
+
+            let analyser = (() => {
+                let sourceNode = audioContext.createMediaStreamSource(stream)
+                let analyser = audioContext.createAnalyser()
+                sourceNode.connect(analyser)
+                return analyser
+            })()
 
             tuner = new Tuner(analyser, refNote, {
                 onNewPitchData: (pitchData) => {
@@ -91,7 +110,6 @@ const TunerCapcha = ({ onSolve }) => {
         if (permissionGranted) {
             setupAudio()
         }
-
         return () => {}
     }, [permissionGranted])
 
@@ -102,18 +120,24 @@ const TunerCapcha = ({ onSolve }) => {
                     ? "Please verify by singing the reference pitch provided."
                     : "Thank you. Click 'Sign up' to continue."}
             </div>
-            {!permissionGranted &&
+            {!permissionGranted && (
                 <div id="buttons">
-                    <button onClick={() => {setPermissionGranted(true)}}>
+                    <button
+                        onClick={() => {
+                            setPermissionGranted(true)
+                        }}
+                    >
                         Grant microphone permission.
                     </button>
                 </div>
-            }
-            {mode != "SOLVED" && permissionGranted &&(
+            )}
+            {mode != "SOLVED" && permissionGranted && (
                 <div id="buttons">
-                    <button onClick={() => {
-                        refNote.press()
-                    }}>
+                    <button
+                        onClick={() => {
+                            refNote.press()
+                        }}
+                    >
                         ▶ Play reference pitch.
                     </button>
                     <button
@@ -158,7 +182,6 @@ const TunerCapcha = ({ onSolve }) => {
                         flex-direction: row;
                         align-items: flex-top;
                     }
-
                 `}
             </style>
         </div>
@@ -173,7 +196,7 @@ const InTune = dynamic(
         ssr: false,
     }
 )
-const SingUpPage = ({onSubmit}) => {
+const SingUpPage = ({ onSubmit }) => {
     let [captchaSolved, setCaptchaSolved] = React.useState(false)
     let [email, setEmail] = React.useState("")
     return (
@@ -188,7 +211,7 @@ const SingUpPage = ({onSubmit}) => {
                     type="text"
                     name="email"
                     placeholder="Enter your email."
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <div id="intuneContainer">
@@ -206,7 +229,9 @@ const SingUpPage = ({onSubmit}) => {
                     value={
                         captchaSolved ? "Sign up." : "Please verify to sign up."
                     }
-                    onClick={() => {captchaSolved && onSubmit(email)}}
+                    onClick={() => {
+                        captchaSolved && onSubmit(email)
+                    }}
                     disabled={!captchaSolved}
                 />
             </form>

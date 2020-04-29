@@ -1,17 +1,6 @@
 const PitchFinder = require("pitchfinder")
 
-const getStream = async () => {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        return navigator.mediaDevices
-            .getUserMedia({ audio: true })
-            .catch(function(err) {
-                console.log("The following getUserMedia error occurred: " + err)
-            })
-    }
-}
-
-
-const getPitchDetector = () => {
+const createPitchDetector = () => {
     let getFreq = PitchFinder.AMDF({
         // threshold: 10,
         sampleRate: 44100 })
@@ -47,12 +36,6 @@ const getPitchDetector = () => {
 }
 
 
-const createAnalyser = (audioContext, stream) => {
-    let sourceNode = audioContext.createMediaStreamSource(stream)
-    let analyser = audioContext.createAnalyser()
-    sourceNode.connect(analyser)
-    return analyser
-}
 
 
 class ReferenceNote {
@@ -63,18 +46,25 @@ class ReferenceNote {
         this.finishedPlaying = false
         this.currentNode = null
         this.replaceNode()
-        this.pitchData = getPitchDetector()(buffer.getChannelData(0))
+        this.pitchData = createPitchDetector()(buffer.getChannelData(0))
         this.onstart = onstart
         this.onended = onended
+        this.latestCreateTime = "0000"
     }
     replaceNode() {
         let newNode = this.audioContext.createBufferSource()
+        let createTime = (new Date()).toISOString()
+        this.latestCreateTime = (createTime > this.latestCreateTime) ? createTime : this.latestCreateTime
         newNode.buffer = this.buffer
+        newNode.createTime = createTime
         newNode.connect(this.audioContext.destination)
         newNode.onended = () => {
-            this.isPlaying = false
-            this.finishedPlaying = true
-            this.onended()
+            console.log(`${newNode.createTime} - ${this.latestCreateTime}`)
+            if (newNode.createTime === this.latestCreateTime)  {
+                this.isPlaying = false
+                this.finishedPlaying = true
+                this.onended()
+            }
         }
         this.currentNode = newNode
     }
@@ -95,7 +85,7 @@ class ReferenceNote {
     }
 }
 
-const getReferenceNote = async (audioContext, {onstart, onended}) => {
+const createReferenceNote = async (audioContext, {onstart, onended}) => {
     return new Promise(async resolve => {
         let res = await fetch("https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/abletondefault-a440.wav")
         let testNoteArrBuff = await res.arrayBuffer()
@@ -107,8 +97,6 @@ const getReferenceNote = async (audioContext, {onstart, onended}) => {
 
 
 module.exports = {
-    getStream,
-    createAnalyser,
-    getReferenceNote,
-    getPitchDetector
+    createReferenceNote,
+    createPitchDetector
 }
