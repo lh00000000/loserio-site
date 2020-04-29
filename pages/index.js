@@ -18,12 +18,26 @@ const MenuBar = () => (
                     <span className="rightBorder">About</span>
                 </div>
             </a>
+            <a href="#singup">
+                <div className="blackKey rightKey centerContents">
+                    <span className="rightBorder">Sing up</span>
+                </div>
+            </a>
+
+            <a
+                target="_blank"
+                href="https://github.com/loser-io"
+            >
+                <div className="blackKey rightKey centerContents">
+                    <span className="rightBorder">Github</span>
+                </div>
+            </a>
             <a
                 href="https://app.swaggerhub.com/apis-docs/loserio/loser/1.0.0"
                 target="_blank"
             >
                 <div className="blackKey rightKey centerContents">
-                    <span className="rightBorder">Documentation</span>
+                    <span className="rightBorder">Docs</span>
                 </div>
             </a>
             <a
@@ -31,12 +45,7 @@ const MenuBar = () => (
                 href="https://medium.com/loser-io-engineering-blog"
             >
                 <div className="blackKey rightKey centerContents">
-                    <span className="rightBorder">Blog</span>
-                </div>
-            </a>
-            <a href="#singup">
-                <div className="blackKey rightKey centerContents">
-                    <span>Sing up</span>
+                    <span>Blog</span>
                 </div>
             </a>
         </div>
@@ -46,7 +55,8 @@ const MenuBar = () => (
                     position: fixed;
                     top: 0;
                     left: 0;
-                    width: 100vw;
+                    width: 100%;
+                    overflow: hidden;
                     z-index: 1;
                     display: flex;
                     flex-direction: row;
@@ -433,6 +443,7 @@ const Main = () => {
                     name="viewport"
                     content="initial-scale=1.0, width=device-width"
                 />
+                <link rel="icon" href="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/favicon.ico" />
             </Head>
             <GetStarted />
             <QuoteOne />
@@ -457,7 +468,7 @@ const Main = () => {
 
                     .fullsection {
                         min-height: 100vh;
-                        width: 100vw;
+                        width: 100%;
                         overflow: hidden;
                     }
                 `}
