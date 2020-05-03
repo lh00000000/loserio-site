@@ -45,11 +45,11 @@ class ReferenceNote {
         this.isPlaying = false
         this.finishedPlaying = false
         this.currentNode = null
-        this.replaceNode()
         this.pitchData = createPitchDetector()(buffer.getChannelData(0))
         this.onstart = onstart
         this.onended = onended
         this.latestCreateTime = "0000"
+        this.replaceNode()
     }
     replaceNode() {
         let newNode = this.audioContext.createBufferSource()
@@ -59,7 +59,6 @@ class ReferenceNote {
         newNode.createTime = createTime
         newNode.connect(this.audioContext.destination)
         newNode.onended = () => {
-            console.log(`${newNode.createTime} - ${this.latestCreateTime}`)
             if (newNode.createTime === this.latestCreateTime)  {
                 this.isPlaying = false
                 this.finishedPlaying = true

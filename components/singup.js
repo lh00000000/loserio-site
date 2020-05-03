@@ -103,7 +103,7 @@ const TunerCapcha = ({ onSolve }) => {
                 onMatch: () => {
                     setMode("SOLVED")
                     onSolve()
-                },
+                }
             })
             tuner.loop()
         }
