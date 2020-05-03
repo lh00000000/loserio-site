@@ -24,10 +24,7 @@ const MenuBar = () => (
                 </div>
             </a>
 
-            <a
-                target="_blank"
-                href="https://github.com/loser-io"
-            >
+            <a target="_blank" href="https://github.com/loser-io">
                 <div className="blackKey rightKey centerContents">
                     <span className="rightBorder">Github</span>
                 </div>
@@ -61,7 +58,6 @@ const MenuBar = () => (
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-
                 }
                 .leftKeys .blackKey {
                     font-size: 32px;
@@ -77,7 +73,6 @@ const MenuBar = () => (
                     justify-content: flex-end;
                     flex-wrap: wrap;
                 }
-
 
                 .rightKeys span {
                     width: 100%;
@@ -213,7 +208,7 @@ const Triad = () => (
         <div id="holder">
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-keyboard-laptop.png" />
+                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-computer.png" />
                 </div>
                 <h3>integrate</h3>
                 <div className="copy">
@@ -222,7 +217,7 @@ const Triad = () => (
             </div>
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-keyboard-piano.png" />
+                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-piano.png" />
                 </div>
                 <h3>batch</h3>
                 <div className="copy">
@@ -231,7 +226,7 @@ const Triad = () => (
             </div>
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-keyboard-dashboard.png" />
+                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-spreadsheet.png" />
                 </div>
                 <h3>extract</h3>
                 <div className="copy">
@@ -267,9 +262,10 @@ const Triad = () => (
                 .imgContainer {
                     // width: 33vw;
                     // height: 33vw;
+                    stroke: 5px;
                 }
                 .imgContainer img {
-                    width: 20vh;
+                    width: 30vh;
                     object-fit: contain;
                 }
                 .copy p {
@@ -380,7 +376,7 @@ const SignUp = () => {
                             you sometime soon.
                         </p>
                         <p>
-                            In the meantime,{" "}
+                            In the meantime,
                             <a
                                 href="https://gist.github.com/lh00000000/2611d78df4b8bd39221914224c8a3047"
                                 target="_blank"
@@ -443,7 +439,10 @@ const Main = () => {
                     name="viewport"
                     content="initial-scale=1.0, width=device-width"
                 />
-                <link rel="icon" href="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/favicon.ico" />
+                <link
+                    rel="icon"
+                    href="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/favicon.ico"
+                />
             </Head>
             <GetStarted />
             <QuoteOne />
