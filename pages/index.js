@@ -450,6 +450,9 @@ const Main = () => {
             <QuoteTwo />
             <SignUp />
             <MenuBar />
+            <div style={{ textAlign: "right", width: "100%", }}>
+                <small style={{ paddingRight: "10px" }}>v:vc</small>
+            </div>
 
             <style jsx global>
                 {`
