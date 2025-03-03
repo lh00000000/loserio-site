@@ -1,8 +1,7 @@
 const fetch = require('isomorphic-unfetch');
 
-
-module.exports ={
-     exportTrailingSlash: true,
+module.exports = {
+  trailingSlash: true,
   exportPathMap: async function() {
     const paths = {
       '/': { page: '/' },
@@ -17,5 +16,9 @@ module.exports ={
     // });
 
     return paths;
+  },
+  // Add recommended settings for Node.js 18
+  experimental: {
+    appDir: false
   }
 }

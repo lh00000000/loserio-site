@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic"
-import React from "react"
+import React, { useState, useEffect } from "react"
 import {
     createReferenceNote,
     createPitchDetector,
@@ -46,20 +46,20 @@ class Tuner {
 let tuner = null
 
 const TunerCapcha = ({ onSolve }) => {
-    let [mode, setMode] = React.useState("DORMANT") // RECORDING || PLAYING || SOLVED
-    let [refNote, setRefNote] = React.useState()
-    let [lastNoteData, setLastNoteData] = React.useState({
+    const [mode, setMode] = useState("DORMANT") // RECORDING || PLAYING || SOLVED
+    const [refNote, setRefNote] = useState()
+    const [lastNoteData, setLastNoteData] = useState({
         note: "No pitch detected yet...",
     })
-    let [permissionGranted, setPermissionGranted] = React.useState(false)
-    let [audioContext, setAudioContext] = React.useState()
+    const [permissionGranted, setPermissionGranted] = useState(false)
+    const [audioContext, setAudioContext] = useState()
 
-    React.useEffect(() => {
+    useEffect(() => {
         tuner && tuner.setListen(mode === "RECORDING")
     }, [mode])
 
-    React.useEffect(() => {
-        let audioContext = new (window.AudioContext ||
+    useEffect(() => {
+        const audioContext = new (window.AudioContext ||
             window.webkitAudioContext)()
         setAudioContext(audioContext)
 
@@ -69,10 +69,8 @@ const TunerCapcha = ({ onSolve }) => {
         }).then((newRefNote) => setRefNote(newRefNote))
     }, [])
 
-    React.useEffect(() => {
-        let setupAudio = async () => {
-            // let audioContext = new (window.AudioContext ||
-            //     window.webkitAudioContext)()
+    useEffect(() => {
+        const setupAudio = async () => {
             let stream = await (async () => {
                 if (
                     navigator.mediaDevices &&
@@ -89,9 +87,9 @@ const TunerCapcha = ({ onSolve }) => {
                 }
             })()
 
-            let analyser = (() => {
-                let sourceNode = audioContext.createMediaStreamSource(stream)
-                let analyser = audioContext.createAnalyser()
+            const analyser = (() => {
+                const sourceNode = audioContext.createMediaStreamSource(stream)
+                const analyser = audioContext.createAnalyser()
                 sourceNode.connect(analyser)
                 return analyser
             })()
@@ -111,7 +109,7 @@ const TunerCapcha = ({ onSolve }) => {
             setupAudio()
         }
         return () => {}
-    }, [permissionGranted])
+    }, [permissionGranted, audioContext, refNote, onSolve])
 
     return (
         <div id="singCaptcha">
@@ -197,8 +195,8 @@ const InTune = dynamic(
     }
 )
 const SingUpPage = ({ onSubmit }) => {
-    let [captchaSolved, setCaptchaSolved] = React.useState(false)
-    let [email, setEmail] = React.useState("")
+    const [captchaSolved, setCaptchaSolved] = useState(false)
+    const [email, setEmail] = useState("")
     return (
         <div>
             <form

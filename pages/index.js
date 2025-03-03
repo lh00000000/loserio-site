@@ -1,3 +1,4 @@
+import React, { useState } from "react"
 import Head from "next/head"
 import SingUp from "../components/singup"
 const colors = {
@@ -114,7 +115,7 @@ const GetStarted = () => {
             <div id="pianovid">
                 <video autoPlay muted loop>
                     <source
-                        src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/shortpianovid480.mov"
+                        src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/shortpianovid480.mov"
                         type="video/mp4"
                     />
                 </video>
@@ -208,7 +209,7 @@ const Triad = () => (
         <div id="holder">
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-computer.png" />
+                    <img src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/icon-computer.png" />
                 </div>
                 <h3>integrate</h3>
                 <div className="copy">
@@ -217,7 +218,7 @@ const Triad = () => (
             </div>
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-piano.png" />
+                    <img src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/icon-piano.png" />
                 </div>
                 <h3>batch</h3>
                 <div className="copy">
@@ -226,7 +227,7 @@ const Triad = () => (
             </div>
             <div className="card">
                 <div className="imgContainer">
-                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-spreadsheet.png" />
+                    <img src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/icon-spreadsheet.png" />
                 </div>
                 <h3>extract</h3>
                 <div className="copy">
@@ -307,9 +308,9 @@ const QuoteTwo = () => (
         <div style={{ maxWidth: "80vw" }}>
             <p>
                 <i>
-                    “loser.io is the born virtuoso in every respect, I thought,
-                    [redacted] the failure from the very beginning who couldn’t
-                    admit his own failure and all his life couldn’t understand
+                    "loser.io is the born virtuoso in every respect, I thought,
+                    [redacted] the failure from the very beginning who couldn't
+                    admit his own failure and all his life couldn't understand
                     it, even though he was one of our very best piano players,
                     as I can say without reservation, he was also the typical
                     failure who failed, who had to fail." - Anonymous, Replaced
@@ -328,14 +329,14 @@ const QuoteTwo = () => (
     </section>
 )
 
-// <a href=""><img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-instagram.png" /></a>
+// <a href=""><img src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/icon-instagram.png" /></a>
 //<div id="shareicons">
 //                <a href="https://twitter.com/loserdotio">
-//                    <img src="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/icon-twitter.png" />
+//                    <img src="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/icon-twitter.png" />
 //                </a>
 //            </div>
 const SignUp = () => {
-    let [submitted, setSubmitted] = React.useState(false)
+    const [submitted, setSubmitted] = useState(false)
     return (
         <section id="singup" className="centerContents fullsection">
             <div id="stuff">
@@ -441,7 +442,7 @@ const Main = () => {
                 />
                 <link
                     rel="icon"
-                    href="https://lh00000000.nyc3.cdn.digitaloceanspaces.com/siteassets/loserio.cloud/favicon.ico"
+                    href="https://lh00000000-public.s3.amazonaws.com/do/siteassets/loserio.cloud/favicon.ico"
                 />
             </Head>
             <GetStarted />
